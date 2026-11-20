@@ -31,19 +31,19 @@
     <TableView fx:id="tablaUsuarios" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="colId" text="ID" prefWidth="55"/>
-            <TableColumn fx:id="colFirstName" text="First Name" prefWidth="110"/>
-            <TableColumn fx:id="colLastName" text="Last Name" prefWidth="110"/>
-            <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
-            <TableColumn fx:id="colPhone" text="Phone" prefWidth="125"/>
-            <TableColumn fx:id="colDateOfBirth" text="Date of Birth" prefWidth="105"/>
-            <TableColumn fx:id="colCountry" text="Country" prefWidth="95"/>
-            <TableColumn fx:id="colCity" text="City" prefWidth="110"/>
-            <TableColumn fx:id="colAddress" text="Address" prefWidth="135"/>
-            <TableColumn fx:id="colAnnualIncome" text="Annual Income" prefWidth="115"/>
-            <TableColumn fx:id="colCreditScore" text="Credit Score" prefWidth="95"/>
-            <TableColumn fx:id="colHasUnpaidDebt" text="Has Unpaid Debt" prefWidth="115"/>
-            <TableColumn fx:id="colUnpaidDebtAmount" text="Unpaid Debt Amount" prefWidth="130"/>
-            <TableColumn fx:id="colStatus" text="Status" prefWidth="85"/>
+            <TableColumn fx:id="colFirstName" text="Nombre" prefWidth="110"/>
+            <TableColumn fx:id="colLastName" text="Apellido" prefWidth="110"/>
+            <TableColumn fx:id="colEmail" text="Correo electrónico" prefWidth="185"/>
+            <TableColumn fx:id="colPhone" text="Teléfono" prefWidth="125"/>
+            <TableColumn fx:id="colDateOfBirth" text="Fecha de nacimiento" prefWidth="135"/>
+            <TableColumn fx:id="colCountry" text="País" prefWidth="95"/>
+            <TableColumn fx:id="colCity" text="Ciudad" prefWidth="110"/>
+            <TableColumn fx:id="colAddress" text="Dirección" prefWidth="135"/>
+            <TableColumn fx:id="colAnnualIncome" text="Ingreso anual" prefWidth="115"/>
+            <TableColumn fx:id="colCreditScore" text="Puntaje crediticio" prefWidth="125"/>
+            <TableColumn fx:id="colHasUnpaidDebt" text="Deuda pendiente" prefWidth="120"/>
+            <TableColumn fx:id="colUnpaidDebtAmount" text="Monto de deuda" prefWidth="125"/>
+            <TableColumn fx:id="colStatus" text="Estado" prefWidth="90"/>
         </columns>
         <placeholder>
             <Label text="Tabla sin contenido"/>
