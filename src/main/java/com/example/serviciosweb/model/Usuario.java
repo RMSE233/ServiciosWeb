@@ -1,78 +1,99 @@
+
 package com.example.serviciosweb.model;
 
 public class Usuario {
 
     private int id;
-    private String nombre;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String telefono;
-    private String ciudad;
-    private String empresa;
+    private String phone;
+    private String dateOfBirth;
+    private String country;
+    private String city;
+    private String address;
+    private double annualIncome;
+    private int creditScore;
+    private boolean hasUnpaidDebt;
+    private double unpaidDebtAmount;
+    private String status;
 
-    public Usuario(int id, String nombre, String username, String email, String telefono, String ciudad, String empresa) {
+    public Usuario(int id, String firstName, String lastName,
+                   String email, String phone, String dateOfBirth,
+                   String country, String city, String address,
+                   double annualIncome, int creditScore,
+                   boolean hasUnpaidDebt, double unpaidDebtAmount,
+                   String status) {
+
         this.id = id;
-        this.nombre = nombre;
-        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.telefono = telefono;
-        this.ciudad = ciudad;
-        this.empresa = empresa;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+        this.annualIncome = annualIncome;
+        this.creditScore = creditScore;
+        this.hasUnpaidDebt = hasUnpaidDebt;
+        this.unpaidDebtAmount = unpaidDebtAmount;
+        this.status = status;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public String getCountry() {
+        return country;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getCity() {
+        return city;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public String getAddress() {
+        return address;
     }
 
-    public String getEmpresa() {
-        return empresa;
+    public double getAnnualIncome() {
+        return annualIncome;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+    public int getCreditScore() {
+        return creditScore;
+    }
+
+    public boolean isHasUnpaidDebt() {
+        return hasUnpaidDebt;
+    }
+
+    public double getUnpaidDebtAmount() {
+        return unpaidDebtAmount;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

@@ -2,6 +2,7 @@ package com.example.serviciosweb.controller;
 
 import com.example.serviciosweb.model.Usuario;
 import com.example.serviciosweb.service.UsuarioService;
+
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -22,40 +23,76 @@ public class UsuarioController {
     private Label lblEstado;
 
     @FXML
+    private Label lblTotalRegistros;
+
+    @FXML
     private TableView<Usuario> tablaUsuarios;
 
     @FXML
     private TableColumn<Usuario, Integer> colId;
 
     @FXML
-    private TableColumn<Usuario, String> colNombre;
+    private TableColumn<Usuario, String> colFirstName;
 
     @FXML
-    private TableColumn<Usuario, String> colUsername;
+    private TableColumn<Usuario, String> colLastName;
 
     @FXML
-    private TableColumn<Usuario, String> colCorreo;
+    private TableColumn<Usuario, String> colEmail;
 
     @FXML
-    private TableColumn<Usuario, String> colTelefono;
+    private TableColumn<Usuario, String> colPhone;
 
     @FXML
-    private TableColumn<Usuario, String> colCiudad;
+    private TableColumn<Usuario, String> colDateOfBirth;
 
     @FXML
-    private TableColumn<Usuario, String> colEmpresa;
+    private TableColumn<Usuario, String> colCountry;
+
+    @FXML
+    private TableColumn<Usuario, String> colCity;
+
+    @FXML
+    private TableColumn<Usuario, String> colAddress;
+
+    @FXML
+    private TableColumn<Usuario, Double> colAnnualIncome;
+
+    @FXML
+    private TableColumn<Usuario, Integer> colCreditScore;
+
+    @FXML
+    private TableColumn<Usuario, Boolean> colHasUnpaidDebt;
+
+    @FXML
+    private TableColumn<Usuario, Double> colUnpaidDebtAmount;
+
+    @FXML
+    private TableColumn<Usuario, String> colStatus;
 
     private final UsuarioService usuarioService = new UsuarioService();
 
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        colCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
-        colEmpresa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colDateOfBirth.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        colCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colAnnualIncome.setCellValueFactory(new PropertyValueFactory<>("annualIncome"));
+        colCreditScore.setCellValueFactory(new PropertyValueFactory<>("creditScore"));
+        colHasUnpaidDebt.setCellValueFactory(new PropertyValueFactory<>("hasUnpaidDebt"));
+        colUnpaidDebtAmount.setCellValueFactory(new PropertyValueFactory<>("unpaidDebtAmount"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    }
+
+    @FXML
+    private void onConsultarDatos() {
+        onConsultarUsuarios();
     }
 
     @FXML
@@ -71,18 +108,36 @@ public class UsuarioController {
 
         btnConsultar.disableProperty().bind(task.runningProperty());
 
-        task.setOnSucceeded(e -> {
+        task.setOnSucceeded(event -> {
             List<Usuario> usuarios = task.getValue();
-            tablaUsuarios.setItems(FXCollections.observableArrayList(usuarios));
-            lblEstado.setText("Usuarios encontrados: " + usuarios.size());
+            int total = usuarios != null ? usuarios.size() : 0;
+
+            tablaUsuarios.setItems(
+                    usuarios != null
+                            ? FXCollections.observableArrayList(usuarios)
+                            : FXCollections.observableArrayList()
+            );
+
+            lblEstado.setText("Usuarios encontrados: " + total);
+            if (lblTotalRegistros != null) {
+                lblTotalRegistros.setText("Registros cargados: " + total);
+            }
+
+            btnConsultar.disableProperty().unbind();
+            btnConsultar.setDisable(false);
         });
 
-        task.setOnFailed(e -> {
+        task.setOnFailed(event -> {
             Throwable error = task.getException();
-            String mensaje = (error != null && error.getMessage() != null)
+
+            String mensaje = (error != null && error.getMessage() != null && !error.getMessage().isBlank())
                     ? error.getMessage()
                     : "Error al consultar la API";
+
             lblEstado.setText(mensaje);
+
+            btnConsultar.disableProperty().unbind();
+            btnConsultar.setDisable(false);
         });
 
         Thread hilo = new Thread(task);
